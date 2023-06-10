@@ -8,10 +8,12 @@ app.use(express.json());
 const {connection} =require("./Config/db")
 const {userrouter}=require("./Routes/Signuploginrputes");
 const {  emirouter } = require("./Routes/Emirouter");
+const { auth } = require("./Middleware/auth");
 app.get("/",async(req,res)=>{
   res.send("welcome")
 })
 app.use("/user",userrouter)
+app.use(auth)
 app.use("/data",emirouter)
 app.listen(8080,async()=>{
 try
